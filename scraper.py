@@ -43,11 +43,10 @@ def query_address(address):
 if __name__ == "__main__":
     # Scrape the CSV for relevant Data
     headers, addresses = scrape_csv("test/inputData.csv")
-    content = []
     # Query each address found, then output
     for address in addresses:
-        content.append(query_address(address))
+        query_address(address)
     headers.append("Valid Address")
-    create_csv("output.csv", headers, content)
+    create_csv("output.csv", headers, addresses)
     
     
