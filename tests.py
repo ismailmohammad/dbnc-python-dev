@@ -7,7 +7,7 @@ import os
 class testSampleData(unittest.TestCase):
         
     def test_csv_output(self):
-        print("Testing CSV Creation and Integrity")
+        """Testing CSV Creation and Integrity"""
         file_name = "test_file.csv"
         header = ['Company', 'Street', 'City', 'St', 'ZIPCode']
         test_content = [['BEND PAWN & TRADING CO-LAPINE', '52504 U.S. 97', 'LA PINE', 'OR', '97739']]
@@ -21,10 +21,13 @@ class testSampleData(unittest.TestCase):
         os.remove(file_name)
         
     def test_address_query(self):
+        """Test Address Lookup"""
         address = ['BEND PAWN & TRADING CO-LAPINE', '52504 U.S. 97', 'LA PINE', 'OR', '97739']
-        print("Testing Address Lookup")
         scraper.query_address(address)
         self.assertEqual(address[5], False)
+        address_true = ['CARDIOSTART RESALE THRIFT STR', '435 W CASCADE AVE', 'SISTERS', 'OR', '97759']
+        scraper.query_address(address_true)
+        self.assertEqual(address_true[5], True)
         
         
 if __name__ == "__main__":
